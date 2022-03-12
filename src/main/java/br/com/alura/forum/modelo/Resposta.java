@@ -2,15 +2,28 @@ package br.com.alura.forum.modelo;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class Resposta {
-
+        
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String mensagem;
-	private Topico topico;
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-	private Usuario autor;
 	private Boolean solucao = false;
-
+	
+	@ManyToOne
+	private Topico topico;
+	
+	@ManyToOne
+	private Usuario autor;
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
