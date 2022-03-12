@@ -21,7 +21,7 @@ public class TopicosController {
         Topico topico2 = new Topico("Dúvida","Dúvidas com Oracle",new Curso("Oracle","Programacao Back-End - Oracle"));
         Topico topico3 = new Topico("Dúvida","Dúvidas com Angular",new Curso("Angular","Programacao Front-End - Angular"));
 
-        return Arrays.asList(topico1,topico2,topico3);
+        return TopicoDto.converter(Arrays.asList(topico1,topico2,topico3));
     }
     
 }
