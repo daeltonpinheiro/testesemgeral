@@ -34,10 +34,13 @@ public class TopicosController {
     }
     
     @PostMapping
-    public void cadastrar(@RequestBody TopicoForm form) {
-
+    public ResponseEntity<TopicoDto> cadastrar(@RequestBody TopicoForm form, UriComponentsBuilder uriBuilder) {
+        
         Topico topico = form.converter(cursoRepository);
         topicoRepository.save(topico);
+        
+        URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
+        return ResponseEntity.created(uri).body(new TopicoDto(topico));
     }
     
 }
