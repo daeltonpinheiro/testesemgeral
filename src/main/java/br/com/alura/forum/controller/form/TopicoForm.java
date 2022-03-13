@@ -6,15 +6,15 @@ import br.com.alura.forum.repository.CursoRepository;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Length;
+import javax.validation.constraints.Size;
 
 public class TopicoForm {
     
-    @NotNull @NotEmpty @Length(min = 5)
+    @NotNull @NotEmpty @Size(min = 5)
     public String titulo;
-    @NotNull @NotEmpty @Length(min = 10)
+    @NotNull @NotEmpty @Size(min = 10)
     public String mensagem;
-    @NotNull @NotEmpty @Length(max = 200)
+    @NotNull @NotEmpty @Size(max = 200)
     public String nomeCurso;
 
     public String getTitulo() {
