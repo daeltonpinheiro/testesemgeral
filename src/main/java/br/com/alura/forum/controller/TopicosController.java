@@ -13,6 +13,9 @@ import br.com.alura.forum.repository.TopicoRepository;
 @RestController
 @RequestMapping("/topicos")
 public class TopicosController {
+    
+    @Autowired
+    private CursoRepository cursoRepository;
 
     @Autowired
     private TopicoRepository topicoRepository;
@@ -33,8 +36,7 @@ public class TopicosController {
     @PostMapping
     public void cadastrar(@RequestBody TopicoForm form) {
 
-        Topico topico = form.converter();
-        
+        Topico topico = form.converter(cursoRepository);
         topicoRepository.save(topico);
     }
     
