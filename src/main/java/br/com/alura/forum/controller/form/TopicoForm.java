@@ -1,5 +1,9 @@
 package br.com.alura.forum.controller.form;
 
+import br.com.alura.forum.modelo.Curso;
+import br.com.alura.forum.modelo.Topico;
+import br.com.alura.forum.repository.CursoRepository;
+
 public class TopicoForm {
     
     public String titulo;
