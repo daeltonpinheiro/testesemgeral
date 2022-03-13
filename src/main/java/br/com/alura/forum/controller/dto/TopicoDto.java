@@ -15,12 +15,16 @@ public class TopicoDto {
 
     public TopicoDto(Topico topico){
 
-        this.id = topico.getId();
+        this.id = (topico.getId());
         this.titulo = topico.getTitulo();
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
     }
     
+    public Long getId() {
+        return id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
