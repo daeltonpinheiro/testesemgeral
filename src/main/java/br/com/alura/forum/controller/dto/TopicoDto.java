@@ -8,12 +8,14 @@ import br.com.alura.forum.modelo.Topico;
 
 public class TopicoDto {
 
+    private Long id;
     private String titulo;
     private String mensagem;
     private LocalDateTime dataCriacao;
 
     public TopicoDto(Topico topico){
 
+        this.id = topico.getId();
         this.titulo = topico.getTitulo();
         this.mensagem = topico.getMensagem();
         this.dataCriacao = topico.getDataCriacao();
