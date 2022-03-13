@@ -11,12 +11,13 @@ import br.com.alura.forum.modelo.Topico;
 import br.com.alura.forum.repository.TopicoRepository;
 
 @RestController
+@RequestMapping("/topicos")
 public class TopicosController {
 
     @Autowired
     private TopicoRepository topicoRepository;
 
-    @RequestMapping("/topicos")
+    @GetMapping
     public List<TopicoDto> lista(String nomeCurso){
 
         if(nomeCurso == null){
@@ -27,6 +28,14 @@ public class TopicosController {
             return TopicoDto.converter(topicos);
         }
         
+    }
+    
+    @PostMapping
+    public void cadastrar(@RequestBody TopicoForm form) {
+
+        Topico topico = form.converter();
+        
+        topicoRepository.save(topico);
     }
     
 }
