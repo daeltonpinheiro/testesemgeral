@@ -47,7 +47,7 @@ public class TopicosController {
             List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
             return TopicoDto.converter(topicos);
         }
-        
+    //metodo de exemplo, não recomendado pois fere o principio da responsabilidade unica!    
     }
     
     @PostMapping
@@ -61,7 +61,7 @@ public class TopicosController {
     }
 
     @GetMapping("/{id}")
-    public DetalhesDoTopicoDto detalhar(@PathVariable Long id) {
+    public DetalhesDoTopicoDto detalhar(@PathVariable("id") Long id) {
 
         //Topico topico = topicoRepository.getOne(id); a partir da versão 2.5 do Spring Boot: deprecated!
         Topico topico = topicoRepository.getById(id);//use this!
