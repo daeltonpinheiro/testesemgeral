@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import br.com.alura.forum.controller.dto.DetalhesDoTopicoDto;
 import br.com.alura.forum.controller.dto.TopicoDto;
@@ -39,7 +42,7 @@ public class TopicosController {
     private TopicoRepository topicoRepository;
 
     @GetMapping
-    public List<TopicoDto> lista(@RequestParam(required = false) String nomeCurso,
+    public Page<TopicoDto> lista(@RequestParam(required = false) String nomeCurso,
                                  @RequestParam int pagina, 
                                  @RequestParam int qtd){
         Pageable paginacao = PageRequest.of(pagina,qtd);
@@ -48,7 +51,7 @@ public class TopicosController {
             Page<Topico> topicos = topicoRepository.findAll(paginacao);
             return TopicoDto.converter(topicos);
         }else{
-            List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso,paginacao);
+            Page<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso,paginacao);
             return TopicoDto.converter(topicos);
         }
     //metodo de exemplo, não recomendado pois fere o principio da responsabilidade unica!    
