@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -38,13 +39,16 @@ public class TopicosController {
     private TopicoRepository topicoRepository;
 
     @GetMapping
-    public List<TopicoDto> lista(String nomeCurso){
+    public List<TopicoDto> lista(@RequestParam(required = false) String nomeCurso,
+                                 @RequestParam int pagina, 
+                                 @RequestParam int qtd){
+        Pageable paginacao = PageRequest.of(pagina,qtd);
 
         if(nomeCurso == null){
-            List<Topico> topicos = topicoRepository.findAll();
+            Page<Topico> topicos = topicoRepository.findAll(paginacao);
             return TopicoDto.converter(topicos);
         }else{
-            List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+            List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso,paginacao);
             return TopicoDto.converter(topicos);
         }
     //metodo de exemplo, não recomendado pois fere o principio da responsabilidade unica!    
