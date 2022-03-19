@@ -40,5 +40,6 @@ public class TopicoDto {
 
 	public static Page<TopicoDto> converter(Page<Topico> topicos) {
 		return topicos.map(TopicoDto::new);
+	}
 
 }
